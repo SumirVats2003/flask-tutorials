@@ -8,6 +8,8 @@
 		"tw_url": "https://twitter.com/",
 		"gh_url": "https://github.com/",
 		"blog_name": "The Coding Thunder",
-		"subheading": "A Blog loved by Programmers"
+		"subheading": "A Blog loved by Programmers",
+		"email": "email@gmail.com",
+		"password": "password"
 	}
 }
