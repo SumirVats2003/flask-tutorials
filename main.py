@@ -36,6 +36,14 @@ class Contacts(db.Model):
     def __repr__(self):
         return f"User {self.name}"
 
+class Posts(db.Model):
+	sno = db.Column(db.Integer, primary_key=True)
+	title = db.Column(db.String(200), nullable=False)
+	slug = db.Column(db.String(25), nullable=False)
+	content = db.Column(db.String(20000), nullable=False)
+	date = db.Column(db.String(), nullable=True)
+	img_file = db.Column(db.String(100), nullable=True)
+
 @app.route("/")
 def index():
     return render_template('index.html', params=params)
@@ -44,9 +52,10 @@ def index():
 def about():
     return render_template('about.html', params=params)
 
-@app.route("/posts")
-def posts():
-    return render_template('post.html', params=params)
+@app.route("/posts/<string:post_slug>", methods = ['GET'])
+def posts(post_slug):
+	post = Posts.query.filter_by(slug=post_slug).first()
+	return render_template('post.html', params=params, post=post)
 
 @app.route("/contact", methods = ['GET', 'POST'])
 def contact():
